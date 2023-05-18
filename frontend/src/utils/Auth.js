@@ -1,5 +1,6 @@
 export const BASE_URL = 'https://api-domainname.vitmach.nomoredomains.monster';
 
+
 const checkResponse = (res) => {
   if (res.ok) {
     return res.json();

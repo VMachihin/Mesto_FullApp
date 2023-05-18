@@ -11,7 +11,7 @@ import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
 import ImagePopup from './ImagePopup';
 import InfoTooltip from './InfoTooltip';
-import { api } from '../utils/Api';
+import Api from '../utils/Api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 import * as auth from '../utils/Auth';
 
@@ -29,6 +29,15 @@ function App() {
   const [tooltip, setTooltip] = React.useState(false);
   const [error, setError] = React.useState(false);
   const [userEmail, setUserEmail] = React.useState('');
+
+  const api = new Api({
+    url: 'api-domainname.vitmach.nomoredomains.monster',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${localStorage.getItem('jwt')}`,
+    },
+  });
+
   // обработчик Escape
   const isOpen =
     isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddPlacePopupOpen || selectedCard.link;
