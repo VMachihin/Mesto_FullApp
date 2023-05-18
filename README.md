@@ -8,8 +8,8 @@
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+IP-адрес 158.160.106.53
 
-Frontend https://...
+Frontend https://domainname.vitmach.nomoredomains.monster
 
-Backend https://...
+Backend https://api-domainname.vitmach.nomoredomains.monster

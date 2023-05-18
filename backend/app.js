@@ -19,6 +19,12 @@ app.use(express.urlencoded({ extended: true })); // для приёма веб-�
 app.use(requestLogger);
 // app.use(cors);
 
+// удалить этот код после успешного прохождения ревью
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 app.use(router);
 
 app.use(errorLogger);
