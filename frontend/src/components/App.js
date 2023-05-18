@@ -47,7 +47,7 @@ function App() {
           if (res) {
             setLoggedIn(true);
             navigate('/', { replace: true });
-            setUserEmail(res.data.email);
+            setUserEmail(res.email);
           }
         })
         .catch(console.error);
@@ -195,13 +195,14 @@ function App() {
   }
 
   function handleSignOut() {
+    setLoggedIn(false);
     localStorage.removeItem('token');
     setUserEmail('');
   }
 
   return (
     <div className="page">
-      <CurrentUserContext.Provider value={{ currentUser }}>
+      <CurrentUserContext.Provider value={currentUser}>
         <Header userEmail={userEmail} onSignOut={handleSignOut} />
 
         <Routes>
