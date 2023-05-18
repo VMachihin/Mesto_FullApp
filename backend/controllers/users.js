@@ -34,7 +34,7 @@ const getUserById = (req, res, next) => {
   User.findById(userId)
     .then((user) => {
       if (!user) {
-        throw next(new NotFoundErr('Пользователь с указанным id не найден.'));
+        throw new NotFoundErr('Пользователь с указанным id не найден.');
       }
 
       res.send(user);
@@ -89,7 +89,7 @@ const editProfile = (req, res, next) => {
   )
     .then((newData) => {
       if (!req.user._id) {
-        throw next(new NotFoundErr('Пользователь с указанным id не найден.'));
+        throw new NotFoundErr('Пользователь с указанным id не найден.');
       }
 
       res.send(newData);
@@ -107,7 +107,7 @@ const editAvatar = (req, res, next) => {
   )
     .then((userData) => {
       if (!req.user._id) {
-        throw next(new NotFoundErr('Пользователь с указанным id не найден.'));
+        throw new NotFoundErr('Пользователь с указанным id не найден.');
       }
 
       res.send(userData);
@@ -122,12 +122,12 @@ const login = (req, res, next) => {
     .select('+password') // команда добавляет в объект user хэш пароля
     .then((user) => {
       if (!user) {
-        throw next(new UnauthorizedErr('Не правильная почта или пароль!'));
+        throw new UnauthorizedErr('Не правильная почта или пароль!');
       }
 
       return bcrypt.compare(password, user.password).then((matched) => {
         if (!matched) {
-          throw next(new UnauthorizedErr('Не правильная почта или пароль!'));
+          throw new UnauthorizedErr('Не правильная почта или пароль!');
         }
 
         const token = jwt.sign({ _id: user._id }, secretKey, {

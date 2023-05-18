@@ -170,7 +170,7 @@ function App() {
         setTooltip(true);
         setOnClose(true);
         setError(false);
-        navigate('/signin', { replace: true });
+        navigate('/sign-in', { replace: true });
       })
       .catch((error) => {
         setError(true);

@@ -41,13 +41,13 @@ const deleteCard = (req, res, next) => {
   Card.findById(cardId)
     .then((card) => {
       if (!card) {
-        throw next(new NotFoundErr('Карточка с id отсутствует в базе'));
+        throw new NotFoundErr('Карточка с id отсутствует в базе');
       } else if (card.owner.toHexString() === req.user._id) {
-        Card.deleteOne({ _id: cardId })
+        card.deleteOne()
           .then((deletedCard) => res.send({ deletedCard, message: 'Карточка удалена' }))
           .catch(next);
       } else {
-        throw next(new ForbiddenErr('Не достаточно прав для удаления карточки!'));
+        throw new ForbiddenErr('Не достаточно прав для удаления карточки!');
       }
     })
     .catch((err) => {
@@ -69,7 +69,7 @@ const likeCard = (req, res, next) => {
     .populate(['owner', 'likes'])
     .then((card) => {
       if (!card) {
-        throw next(new NotFoundErr('Карточка с указанным id не найдена.'));
+        throw new NotFoundErr('Карточка с указанным id не найдена.');
       }
 
       res.send(card);
@@ -87,7 +87,7 @@ const dislikeCard = (req, res, next) => {
     .populate(['owner', 'likes'])
     .then((card) => {
       if (!card) {
-        throw next(new NotFoundErr('Карточка с указанным id не найдена.'));
+        throw new NotFoundErr('Карточка с указанным id не найдена.');
       }
 
       res.send(card);

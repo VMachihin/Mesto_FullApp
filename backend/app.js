@@ -1,8 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
-const { routeNotFound, centralizedErrorHandler } = require('./utils/centralized-error-handler');
+const { centralizedErrorHandler } = require('./utils/centralized-error-handler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { NotFoundErr } = require('./errors/not-found-err');
 const cors = require('./middlewares/cors');
 
 const router = require('./routes');
@@ -27,11 +28,13 @@ app.get('/crash-test', () => {
 });
 app.use(router);
 
+app.use((req, res, next) => {
+  next(new NotFoundErr('Не корректный путь'));
+});
+
 app.use(errorLogger);
 
 app.use(errors());
-
-app.use(routeNotFound);
 
 app.use(centralizedErrorHandler);
 
