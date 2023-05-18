@@ -3,7 +3,7 @@ const allowedCors = [
   'http://domainname.vitmach.nomoredomains.monster',
   'https://api-domainname.vitmach.nomoredomains.monster',
   'http://api-domainname.vitmach.nomoredomains.monster',
-  'localhost:3000',
+  'http://localhost:3000',
 ];
 
 module.exports = (req, res, next) => {
