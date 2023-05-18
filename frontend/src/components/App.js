@@ -185,7 +185,7 @@ function App() {
       .authorization(email, password)
       .then((data) => {
         if (data.token) {
-          localStorage.setItem('token', data.token);
+          localStorage.setItem('jwt', data.token);
           setLoggedIn(true);
           setUserEmail(email);
           navigate('/', { replace: true });
