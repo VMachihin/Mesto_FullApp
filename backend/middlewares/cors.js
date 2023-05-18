@@ -3,20 +3,19 @@ const allowedCors = [
   'http://domainname.vitmach.nomoredomains.monster',
   'https://api-domainname.vitmach.nomoredomains.monster',
   'http://api-domainname.vitmach.nomoredomains.monster',
+  'localhost:3000',
   'http://localhost:3000',
 ];
 
 module.exports = (req, res, next) => {
-  const { origin } = req.headers;// Сохраняем источник запроса в переменную origin
-  const { method } = req;// Сохраняем тип запроса (HTTP-метод) в соответствующую переменную
-  const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
+  const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
+  const { method } = req; // Сохраняем тип запроса (HTTP-метод) в соответствующую переменную
   const requestHeaders = req.headers['access-control-request-headers'];
-
+  const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
+  // проверяем, что источник запроса есть среди разрешённых
   if (allowedCors.includes(origin)) {
     // устанавливаем заголовок, который разрешает браузеру запросы с этого источника
     res.header('Access-Control-Allow-Origin', origin);
-    // устанавливаем заголовок, который разрешает браузеру запросы из любого источника
-    // res.header('Access-Control-Allow-Origin', "*");
   }
 
   if (method === 'OPTIONS') {

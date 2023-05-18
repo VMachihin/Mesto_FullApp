@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const { routeNotFound, centralizedErrorHandler } = require('./utils/centralized-error-handler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-// const cors = require('./middlewares/cors');
+const cors = require('./middlewares/cors');
 
 const router = require('./routes');
 
@@ -17,7 +17,7 @@ app.use(express.json()); // для собирания JSON-формата
 app.use(express.urlencoded({ extended: true })); // для приёма веб-страниц внутри POST-запроса
 
 app.use(requestLogger);
-// app.use(cors);
+app.use(cors);
 
 // удалить этот код после успешного прохождения ревью
 app.get('/crash-test', () => {
