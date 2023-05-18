@@ -31,12 +31,28 @@ function App() {
   const [userEmail, setUserEmail] = React.useState('');
 
   const api = new Api({
-    url: 'api-domainname.vitmach.nomoredomains.monster',
+    url: 'https://api-domainname.vitmach.nomoredomains.monster',
     headers: {
       'Content-Type': 'application/json',
       authorization: `Bearer ${localStorage.getItem('jwt')}`,
     },
   });
+
+  React.useEffect(() => {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      auth
+        .checkToken(jwt)
+        .then((res) => {
+          if (res) {
+            setLoggedIn(true);
+            navigate('/', { replace: true });
+            setUserEmail(res.data.email);
+          }
+        })
+        .catch(console.error);
+    }
+  }, []);
 
   // обработчик Escape
   const isOpen =
@@ -146,28 +162,6 @@ function App() {
       };
     }
   }, [isOpen]);
-
-  React.useEffect(() => {
-    checkToken();
-  }, []);
-
-  function checkToken() {
-    if (localStorage.getItem('token')) {
-      const token = localStorage.getItem('token');
-      if (token) {
-        auth
-          .checkToken(token)
-          .then((res) => {
-            if (res) {
-              setLoggedIn(true);
-              setUserEmail(res.data.email);
-              navigate('/', { replace: true });
-            }
-          })
-          .catch(console.error);
-      }
-    }
-  }
 
   function handleRegister(email, password) {
     auth
