@@ -1,0 +1,13 @@
+.sign__input {
+  padding: 13px 0;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #cccccc;
+  background-color: transparent;
+  color: #cccccc;
+}
+
+input:-webkit-autofill {
+  transition: all 5000s ease-in-out 0s;
+}

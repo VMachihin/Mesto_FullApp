@@ -1,0 +1,10 @@
+.sign__linkSignIn {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in;
+}
+
+.sign__linkSignIn:hover {
+  opacity: 0.6;
+}

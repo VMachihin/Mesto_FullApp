@@ -1,0 +1,17 @@
+.header__btnLogInLogOut {
+  border: none;
+  text-decoration: none;
+  background-color: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  transition: opacity 0.2s ease-in;
+  padding: 0;
+  margin-left: 24px;
+}
+
+.header__btnLogInLogOut:hover {
+  opacity: 0.6;
+}

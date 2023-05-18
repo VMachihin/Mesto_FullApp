@@ -1,0 +1,12 @@
+.sign__btn {
+  width: 100%;
+  padding: 14px 84px;
+  border-radius: 2px;
+  margin: 186px 0 15px 0;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in;
+}
+
+.sign__btn:hover {
+  opacity: 0.85;
+}
