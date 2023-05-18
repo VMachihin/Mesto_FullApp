@@ -68,10 +68,10 @@ export default class Api {
   }
 }
 
-export const api = new Api({
-  url: 'api-domainname.vitmach.nomoredomains.monster',
-  headers: {
-    authorization: '7c807b84-450d-4868-9be8-1ddb6e4753bd',
-    'Content-Type': 'application/json',
-  },
-});
+// export const api = new Api({
+//   url: 'api-domainname.vitmach.nomoredomains.monster',
+//   headers: {
+//     authorization: '7c807b84-450d-4868-9be8-1ddb6e4753bd',
+//     'Content-Type': 'application/json',
+//   },
+// });
