@@ -1,8 +1,11 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+require('dotenv').config();
+
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 const User = require('../models/users');
-const { secretKey, CREATED } = require('../utils/variables');
 const {
   BadRequestErr,
   NotFoundErr,
@@ -61,7 +64,7 @@ const createUser = (req, res, next) => {
         const newUserNoPassword = newUser.toObject();
         delete newUserNoPassword.password;
 
-        res.status(CREATED).send(newUserNoPassword);
+        res.status(201).send(newUserNoPassword);
       })
       .catch((err) => {
         if (err.code === 11000) {
@@ -130,7 +133,7 @@ const login = (req, res, next) => {
           throw new UnauthorizedErr('Не правильная почта или пароль!');
         }
 
-        const token = jwt.sign({ _id: user._id }, secretKey, {
+        const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', {
           expiresIn: '10d',
         });
         res

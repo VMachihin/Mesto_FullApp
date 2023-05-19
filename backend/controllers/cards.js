@@ -1,5 +1,4 @@
 const Card = require('../models/cards');
-const { CREATED } = require('../utils/variables');
 const { BadRequestErr, NotFoundErr, ForbiddenErr } = require('../errors');
 
 const createCard = (req, res, next) => {
@@ -8,7 +7,7 @@ const createCard = (req, res, next) => {
 
   Card.create({ name, link, owner: _id })
     .then((newCard) => {
-      res.status(CREATED).send(newCard);
+      res.status(201).send(newCard);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
