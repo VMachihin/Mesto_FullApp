@@ -8,6 +8,6 @@
 
 IP-адрес 158.160.106.53
 
-Frontend https://domainname.vitmach.nomoredomains.monster
+Frontend https://mesto.vitmach.ru
 
 Backend https://api.mesto.vitmach.ru
